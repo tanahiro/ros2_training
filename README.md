@@ -10,19 +10,19 @@ $ ros2 pkg create --build-type ament_cmake PACKAGE_NAME
 ```
 
 ```bash
-# list of installed packages
+# list installed packages
 $ ros2 pkg list
 ```
 
 ### Interfaces
 ```bash
-# list of interfaces (msg, srv, action)
+# list interfaces (msg, srv, action)
 $ ros2 interface lits
 ```
 
 ### Topic
 ```bash
-# list of topics
+# list topics
 $ ros2 topic list
 
 # subscribe topic
@@ -31,12 +31,22 @@ $ ros2 topic echo TOPIC_NAME
 
 ### Service
 ```bash
-# list of services
+# list services
 $ ros2 service list
 
 # call service
 $ ros2 service call SERVICE_NAME SERVICE_TYPE VALUES
 $ ros2 service call /trn/command trn_interfaces/srv/Command "cmd: open"
+```
+
+### Action
+```bash
+# list actions
+$ ros2 action list
+
+# call action
+$ ros2 action send_goal ACTION_NAME TYPE VALUE
+$ ros2 action send_goal /trn/action_cmd trn_interfaces/action/Command "{cmd: open}" --feedback
 ```
 
 ### building pacakges

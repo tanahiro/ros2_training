@@ -17,6 +17,7 @@ find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
   "srv/Command.srv"
+  "action/Command.action"
 )
 
 if(BUILD_TESTING)
