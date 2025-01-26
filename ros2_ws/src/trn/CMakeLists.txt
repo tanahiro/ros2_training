@@ -15,11 +15,13 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(random_numbers REQUIRED)
 
 add_executable(trn src/trn.cpp)
-ament_target_dependencies(trn rclcpp sensor_msgs)
+ament_target_dependencies(trn rclcpp random_numbers sensor_msgs)
 
 install(TARGETS
+  trn
   DESTINATION lib/${PROJECT_NAME}
 )
 
