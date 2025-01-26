@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(trn)
+project(trn_interfaces)
 
 # Default to C++17
 if(NOT CMAKE_CXX_STANDARD)
@@ -13,16 +13,10 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
-find_package(rclcpp REQUIRED)
-find_package(sensor_msgs REQUIRED)
-find_package(random_numbers REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
 
-add_executable(trn src/trn.cpp)
-ament_target_dependencies(trn rclcpp random_numbers sensor_msgs)
-
-install(TARGETS
-  trn
-  DESTINATION lib/${PROJECT_NAME}
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "srv/Command.srv"
 )
 
 if(BUILD_TESTING)
@@ -40,4 +34,5 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+ament_export_dependencies(rosidl_default_runtime)
 ament_package()

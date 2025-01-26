@@ -6,7 +6,10 @@
 #include "sensor_msgs/msg/joint_state.hpp"
 #include "random_numbers/random_numbers.h"
 
+#include "trn_interfaces/srv/command.hpp"
+
 using namespace std::chrono_literals;
+ using namespace std::placeholders;
 
 class TrnNode : public rclcpp::Node
 {
@@ -18,11 +21,27 @@ public:
             100ms,
             std::bind(&TrnNode::timer_callback, this)
         );
+
+        srv_cmd_ = this->create_service<trn_interfaces::srv::Command>(
+            "trn/command",
+            std::bind(&TrnNode::handle_service, this, _1, _2, _3)
+        );
+    }
+
+    void handle_service(
+        const std::shared_ptr<rmw_request_id_t> request_header,
+        const std::shared_ptr<trn_interfaces::srv::Command::Request> request,
+        const std::shared_ptr<trn_interfaces::srv::Command::Response> response)
+    {
+        (void)request_header;
+        RCLCPP_INFO(get_logger(), "request: %s", request->cmd.c_str());
+        response->state = "ok";
     }
 
 private:
     rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr publisher_;
     rclcpp::TimerBase::SharedPtr timer_;
+    rclcpp::Service<trn_interfaces::srv::Command>::SharedPtr srv_cmd_;
 
     void timer_callback()
     {
@@ -44,10 +63,15 @@ private:
     }
 };
 
+
 int main(int argc, char *argv[])
 {
   rclcpp::init(argc, argv);
-  rclcpp::spin(std::make_shared<TrnNode>());
+
+  auto node = std::make_shared<TrnNode>();
+
+  rclcpp::spin(node);
   rclcpp::shutdown();
+
   return 0;
 }

@@ -1,14 +1,32 @@
 {
 	"folders": [
 		{
-			"path": "."
-		}
+			"name": "root",
+			"path": ".",
+		},
+		{
+			"name": "trn",
+			"path": "trn",
+		},
+		{
+			"name": "trn_interfaces",
+			"path": "trn_interfaces",
+		},
 	],
+	"settings": {
+		"files.exclude": {
+			"**/.git": true,
+			"**/.DS_Store": true,
+			"**/Thumbs.db": true,
+			"trn": true,
+			"trn_interfaces": true,
+		}
+	},
 	"extensions": {
 		"recommendations": [
 			"ms-vscode.cpptools-extension-pack",
 			"ms-vscode.cmake-tools",
 			"EditorConfig.EditorConfig",
 		]
-	}
+	},
 }

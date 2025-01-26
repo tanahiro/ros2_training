@@ -5,4 +5,4 @@ HEX_CONFIG := $(shell printf "{\"containerName\":\"/${CONTAINER_NAME}\",\"settin
 .PHONY: code
 code:
 	@code \
-		--folder-uri "vscode-remote://attached-container+${HEX_CONFIG}${WORKING_DIR_NAME}"
+		--file-uri "vscode-remote://attached-container+${HEX_CONFIG}${WORKING_DIR_NAME}/trn.code-workspace"
