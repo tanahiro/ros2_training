@@ -2,11 +2,25 @@
 
 ## Commands
 Assuming the ros2 workspace directory is `ros2_ws`
-### creating package
+### Creating package
 In `ros2_ws/src`,
 
 ```bash
-ros2 pkg create --build-type ament_cmake PACKAGE_NAME
+$ ros2 pkg create --build-type ament_cmake PACKAGE_NAME
+```
+
+```bash
+# list of installed packages
+$ ros2 pkg list
+```
+
+### Topic
+```bash
+# list of topics
+$ ros2 topic list
+
+# subscribe topic
+$ ros2 topic echo TOPIC_NAME
 ```
 
 ### building pacakges
@@ -24,7 +38,7 @@ You may also need to source `ros2_ws/install/setup.[sh|zsh|bash]`
 ## Docker dev env
 ```bash
 # build ros2 image
-$ make build-image 
+$ make build-image
 
 # run ros2 container
 $ make run-container
@@ -46,4 +60,5 @@ In that case, change the permission of the following files in
 
 
 ## Links
-* [ROS 2 Tutorials](https://docs.ros.org/en/jazzy/Tutorials.html) (jazzy)
+* [ROS2 Tutorials](https://docs.ros.org/en/jazzy/Tutorials.html) (jazzy)
+* [ROS2 Package list](https://index.ros.org/)

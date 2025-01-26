@@ -66,7 +66,7 @@ setopt print_eight_bit
 ## bind key {{{
 bindkey -e
 bindkey "^P" history-beginning-search-backward-end
-bindkey "^N" history-beginning-search-forward-end 
+bindkey "^N" history-beginning-search-forward-end
 # }}}
 
 # {{{ prompt
@@ -79,3 +79,7 @@ export _colcon_cd_root=/opt/ros/jazzy/
 
 source /opt/ros/jazzy/setup.zsh
 source /usr/share/colcon_cd/function/colcon_cd.sh
+
+if [ -f "/ros2_ws/install/setup.zsh" ]; then
+    source /ros2_ws/install/setup.zsh
+fi

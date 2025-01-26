@@ -15,7 +15,6 @@ X_SCREEN = $(shell echo ${DISPLAY} | awk '{split($$1, x, ":"); print x[2]}')
 run-container: | .home ros2_ws
 	@docker run \
 		--rm -it \
-		--user `id -u` \
 		--volume ${PWD}/.home:/tmp/home \
 		--volume ${PWD}/ros2_ws:/ros2_ws \
 		--env HOME=/tmp/home \
