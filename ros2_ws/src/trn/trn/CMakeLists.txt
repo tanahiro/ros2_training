@@ -18,8 +18,10 @@ find_package(sensor_msgs REQUIRED)
 find_package(random_numbers REQUIRED)
 find_package(trn_interfaces REQUIRED)
 
+include_directories(include)
+
 add_executable(trn src/trn.cpp)
-ament_target_dependencies(trn rclcpp random_numbers sensor_msgs trn_interfaces)
+ament_target_dependencies(trn rclcpp sensor_msgs random_numbers trn_interfaces)
 
 install(TARGETS
   trn
