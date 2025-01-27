@@ -55,7 +55,16 @@ $ ros2 action send_goal /trn/action_cmd trn_interfaces/action/Command "{cmd: ope
 $ ros2 param list
 
 # set param
-$ ros2 param NODE_NAME PARAMETER_NAME VALUE
+$ ros2 param set NODE_NAME PARAMETER_NAME VALUE
+
+# dump params in yaml format
+$ ros2 param dump NODE_NAME
+
+# run with param
+$ ros2 run PACKAGE_NAME EXECUTABLE_NAME --ros-args -p PARAM_NAME:=VALUE
+
+# run with param in file
+$ ros2 run PACKAGE_NAME EXECUTABLE_NAME --ros-args --params-file PARAM_FILE.yml
 ```
 
 ### building pacakges
