@@ -2,6 +2,7 @@
 #ifndef TRN_HPP_
 #define TRN_HPP_
 
+#include <cinttypes>
 #include <chrono>
 #include <memory>
 #include <thread>
@@ -36,8 +37,13 @@ private:
     rclcpp::Service<trn_interfaces::srv::Command>::SharedPtr srv_cmd_;
     rclcpp_action::Server<trn_interfaces::action::Command>::SharedPtr action_server_cmd_;
 
+    std::shared_ptr<rclcpp::ParameterEventHandler> param_sub_;
+    std::shared_ptr<rclcpp::ParameterCallbackHandle> param_handler_;
+
     void timer_callback();
-    void action_cmd_execute(const std::shared_ptr<rclcpp_action::ServerGoalHandle<trn_interfaces::action::Command>>);
+    void action_cmd_execute(
+        const std::shared_ptr<rclcpp_action::ServerGoalHandle<trn_interfaces::action::Command>>);
+    void param_callback(const rclcpp:: Parameter&);
 };
 
 #endif

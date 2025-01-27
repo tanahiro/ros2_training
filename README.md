@@ -49,6 +49,15 @@ $ ros2 action send_goal ACTION_NAME TYPE VALUE
 $ ros2 action send_goal /trn/action_cmd trn_interfaces/action/Command "{cmd: open}" --feedback
 ```
 
+### Params
+```bash
+# list params
+$ ros2 param list
+
+# set param
+$ ros2 param NODE_NAME PARAMETER_NAME VALUE
+```
+
 ### building pacakges
 In `ros2_ws`,
 ```bash
