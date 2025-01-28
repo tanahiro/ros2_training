@@ -10,6 +10,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "rclcpp_action/rclcpp_action.hpp"
 #include "sensor_msgs/msg/joint_state.hpp"
+#include "std_msgs/msg/string.hpp"
 #include "random_numbers/random_numbers.h"
 
 #include "trn_interfaces/srv/command.hpp"
@@ -33,6 +34,7 @@ public:
 
 private:
     rclcpp::Publisher<sensor_msgs::msg::JointState>::SharedPtr publisher_;
+    rclcpp::Subscription<std_msgs::msg::String>::SharedPtr subscriber_;
     rclcpp::TimerBase::SharedPtr timer_;
     rclcpp::Service<trn_interfaces::srv::Command>::SharedPtr srv_cmd_;
     rclcpp_action::Server<trn_interfaces::action::Command>::SharedPtr action_server_cmd_;
@@ -44,6 +46,7 @@ private:
     void action_cmd_execute(
         const std::shared_ptr<rclcpp_action::ServerGoalHandle<trn_interfaces::action::Command>>);
     void param_callback(const rclcpp:: Parameter&);
+    void sub_callback(const std_msgs::msg::String::ConstSharedPtr msg);
 };
 
 #endif

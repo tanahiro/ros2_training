@@ -12,6 +12,12 @@ TrnNode::TrnNode(const rclcpp::NodeOptions & options = rclcpp::NodeOptions()) : 
         500ms,
         std::bind(&TrnNode::timer_callback, this));
 
+    // subscriber
+    subscriber_ = this->create_subscription<std_msgs::msg::String>(
+        "trn/command",
+        rclcpp::QoS(10),
+        std::bind(&TrnNode::sub_callback, this, _1));
+
     // service
     srv_cmd_ = this->create_service<trn_interfaces::srv::Command>(
         "trn/command",
@@ -137,15 +143,19 @@ void TrnNode::param_callback(const rclcpp:: Parameter &p ) {
     }
 }
 
+void TrnNode::sub_callback(const std_msgs::msg::String::ConstSharedPtr msg) {
+    RCLCPP_INFO(this->get_logger(), "subscription: %s", msg->data.c_str());
+}
+
 int main(int argc, char *argv[])
 {
-  rclcpp::init(argc, argv);
+    rclcpp::init(argc, argv);
 
-  auto node = std::make_shared<TrnNode>();
+    auto node = std::make_shared<TrnNode>();
 
-  RCLCPP_INFO(node->get_logger(), "starting node");
-  rclcpp::spin(node);
-  rclcpp::shutdown();
+    RCLCPP_INFO(node->get_logger(), "starting node");
+    rclcpp::spin(node);
+    rclcpp::shutdown();
 
-  return 0;
+    return 0;
 }

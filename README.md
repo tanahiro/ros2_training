@@ -27,6 +27,10 @@ $ ros2 topic list
 
 # subscribe topic
 $ ros2 topic echo TOPIC_NAME
+
+# publish topic
+$ ros2 topic pub TOPIC_NAME MESSAGE_TYPE VALUES
+$ ros2 topic pub -1 /trn/command std_msgs/String "data: foo"
 ```
 
 ### Service
