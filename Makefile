@@ -8,6 +8,7 @@ ros2_ws:
 
 uid = `id -u`
 gid = `id -g`
+USER_PASSWD ?= "rosuser"
 
 X_SCREEN = $(shell echo ${DISPLAY} | awk '{split($$1, x, ":"); print x[2]}')
 
@@ -22,6 +23,7 @@ run-container: | .home ros2_ws
 		--env "HISTFILE=/tmp/home/.zhistory" \
 		--env "SAVEHIST=5000" \
 		--workdir /ros2_ws \
+		-p 2022:22 \
 		--name ros2 \
 		--hostname ros2 \
 		ros:jazzy-desktop
@@ -36,6 +38,7 @@ build-image:
 		--tag ros:jazzy-desktop \
 		--build-arg uid=${uid} \
 		--build-arg gid=${gid} \
+		--build-arg USER_PASSWD=${USER_PASSWD} \
 		.
 
 
